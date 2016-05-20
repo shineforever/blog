@@ -2,6 +2,7 @@
 # coding:utf-8
 from django.conf.urls import url
 from . import views
+from .feeds import LatestPostFeed
 """
 Created on: 2016-04-19 16:50 
 @author: guolt
@@ -16,6 +17,7 @@ urlpatterns = [
         views.post_detail,
         name='post_detail'),
     url(r'^(?P<post_id>\d+)/share/$', views.post_share, name='post_share'),
+    url(r'^feed/$',LatestPostFeed(),name='post_feed'),
 
 ]
 
