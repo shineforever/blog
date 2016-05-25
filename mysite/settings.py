@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'debug_toolbar',
+    'haystack',
     'blog',
     'taggit',
 )
@@ -54,6 +56,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'mysite.urls'
@@ -76,6 +79,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+    'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+    'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -106,3 +115,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+INTERNAL_IPS = ('127.0.0.1','192.168.32.196')
+DEBUG_TOOLBAR_CONFIG = {  'JQUERY_URL' : r"http://code.jquery.com/jquery-2.1.1.min.js"}
